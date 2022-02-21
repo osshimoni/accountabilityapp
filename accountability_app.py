@@ -53,6 +53,7 @@ with col1:
     if st.button('Log Workout'):
         df.at[0,name] = ('Yes')
         upload_df(ws, df)
+        st.write('Saved')
 
 # rest day
 with col2:
