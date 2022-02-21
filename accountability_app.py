@@ -41,7 +41,7 @@ if df_fact.at[0,'Date'] != str(date.today()):
 # main code
 if df.at[0,'Date'] != str(date.today()):
     df = df.append(df.iloc[0])
-    df.iloc[0] = (input_date, 'No', 'No','No')
+    df.iloc[0] = (input_date, '', '','')
     upload_df(ws,df)
 
 # get user name
