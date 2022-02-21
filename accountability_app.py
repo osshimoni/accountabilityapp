@@ -41,7 +41,7 @@ if df_fact.at[0,'Date'] != str(date.today()):
 # main code
 if df.at[0,'Date'] != str(date.today()):
     df = df.append(df.iloc[0])
-    df.iloc[0] = (input_date, '', '','')
+    df.iloc[0] = (input_date, '--', '--','--')
     upload_df(ws,df)
 
 # get user name
@@ -64,7 +64,7 @@ with col2:
 
 
 # if all users completed workouts, show secret
-if 'No' not in list(df.iloc[0]) and 'Rest' not in list(df.iloc[0]):
+if '--' not in list(df.iloc[0]) and 'Rest' not in list(df.iloc[0]):
     st.subheader('Good job fellas')
     if st.button('Show Daily Fact'):
         st.write(df_fact.at[0,'Fact'])
