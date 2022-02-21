@@ -43,7 +43,7 @@ if df.at[0,'Date'] != str(date.today()):
     upload_df(ws,df)
 
 # get user name
-name = st.radio('Name', options = ['Osher', 'Ryan'])
+name = st.radio('Name', options = ['Osher', 'Ryan','Sumana'])
 
 # completed workout
 col1, col2 = st.columns([1, 1])
