@@ -6,6 +6,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread_dataframe as gs
 import randfacts as rd
 
+# To add a user: add them to source dataset, add them to name radio, add a 'No' to the new data creation
+
 gc = gspread.service_account(filename="credentials.json")
 
 
