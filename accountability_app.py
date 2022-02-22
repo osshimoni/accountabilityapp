@@ -16,9 +16,6 @@ df = pd.DataFrame.from_dict(ws.get_all_records())
 
 st.subheader('Workout Tracker')
 
-st.sidebar.title('History')
-st.sidebar.table(df.sort_values(by = ['Date'], ascending = False))
-st.sidebar.button('Refresh')
 
 # update data in google sheets with new data
 def upload_df(ws, df):
@@ -48,7 +45,10 @@ if str(input_date) not in list(df['Date']):
     df = df.append(new_day_data_df)
     upload_df(ws,df)
 
-
+st.sidebar.title('History')
+st.sidebar.table(df.sort_values(by = ['Date'], ascending = False))
+st.sidebar.button('Refresh')
+    
 # get user name
 name = st.radio('Name', options = ['Osher', 'Ryan','Sumana'])
 
