@@ -32,17 +32,22 @@ input_date = str(st.date_input('Date'))
 ws_fact = gc.open('facts').worksheet('facts')
 df_fact = pd.DataFrame.from_dict(ws_fact.get_all_records())
 
-if df_fact.at[0,'Date'] != str(date.today()):
-    df_fact = df_fact.append(df_fact.iloc[0])
-    df_fact.iloc[0] = (input_date, str(rd.get_fact()))
+if str(input_date) not in list(df_fact['Date']):
+    new_fact_data = {'Date':[input_date], 'Fact':[str(rd.get_fact())]}
+    new_fact_data_df = pd.DataFrame.from_dict(new_fact_data)
+    df_fact = df_fact.append(new_fact_data_df)
 
     upload_df(ws_fact, df_fact)
 
+
+
 # main code
-if df.at[0,'Date'] != str(date.today()):
-    df = df.append(df.iloc[0])
-    df.iloc[0] = (input_date, '--', '--','--')
+if str(input_date) not in list(df['Date']):
+    new_day_data = {'Date':[input_date], 'Osher':['--'], 'Ryan':['--'], 'Sumana':['--']}
+    new_day_data_df = pd.DataFrame.from_dict(new_day_data)
+    df = df.append(new_day_data_df)
     upload_df(ws,df)
+
 
 # get user name
 name = st.radio('Name', options = ['Osher', 'Ryan','Sumana'])
@@ -51,23 +56,26 @@ name = st.radio('Name', options = ['Osher', 'Ryan','Sumana'])
 col1, col2 = st.columns([1, 1])
 with col1:
     if st.button('Log Workout'):
-        df.at[0,name] = ('Yes')
+        df.loc[df['Date'] == input_date, name] = 'Yes'
         upload_df(ws, df)
         st.write('Saved')
 
 # rest day
 with col2:
     if st.button('Rest'):
-        df.at[0,name] = ('Rest')
+        df.loc[df['Date'] == input_date, name] = 'Rest'
         st.write('You better have a good reason...')
         upload_df(ws, df)
 
 
+
 # if all users completed workouts, show secret
-if '--' not in list(df.query(f'Date == {input_date}')) and 'Rest' not in list(df.query(f'Date == {input_date}')):
+if '--' not in df[df['Date']==input_date].values and 'Rest' not in df[df['Date']==input_date].values:
     st.subheader('Good job fellas')
     if st.button('Show Daily Fact'):
-        st.write(df_fact.query(f'Date == {input_date}')['Fact'])
+        st.write(df_fact.loc[df_fact['Date'] == input_date]['Fact'])
+
+
 
 
 
