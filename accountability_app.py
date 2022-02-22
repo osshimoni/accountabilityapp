@@ -64,7 +64,7 @@ with col2:
 
 
 # if all users completed workouts, show secret
-if '--' not in list(df.query(f'Date == {input_date}') and 'Rest' not in df.query(f'Date == {input_date}):
+if '--' not in list(df.query(f'Date == {input_date}') and 'Rest' not in df.query(f'Date == {input_date}'):
     st.subheader('Good job fellas')
     if st.button('Show Daily Fact'):
         st.write(df_fact.query(f'Date == {input_date}')['Fact'])
