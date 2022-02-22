@@ -67,7 +67,7 @@ with col2:
 if '--' not in list(df.iloc[0]) and 'Rest' not in list(df.iloc[0]):
     st.subheader('Good job fellas')
     if st.button('Show Daily Fact'):
-        st.write(df_fact.at[0,'Fact'])
+        st.write(df_fact.query(f'Date == {input_date}')['Fact'])
 
 
 
