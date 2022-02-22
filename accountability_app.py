@@ -75,7 +75,6 @@ if '--' not in df[df['Date']==input_date].values and 'Rest' not in df[df['Date']
 
 st.sidebar.title('History')
 st.sidebar.table(df.sort_values(by = ['Date'], ascending = False))
-st.sidebar.button('Refresh')
 
 
 
