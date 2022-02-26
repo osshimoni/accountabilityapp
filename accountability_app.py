@@ -14,6 +14,8 @@ gc = gspread.service_account(filename="credentials.json")
 ws = gc.open('accountability').worksheet('data')
 df = pd.DataFrame.from_dict(ws.get_all_records())
 
+
+
 st.subheader('Workout Tracker')
 
 
@@ -37,10 +39,10 @@ if str(input_date) not in list(df_fact['Date']):
 
     upload_df(ws_fact, df_fact)
 
-
+ws_chat = gc.open('chat').worksheet('chat')
+df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
+    
 def chat(text, name, time):
-    ws_chat = gc.open('chat').worksheet('chat')
-    df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
     new_chat_data = {'Name':[name], 'Time':[time], 'Message':[text]}
     upload_df(ws_chat, df_chat)
 
@@ -81,6 +83,9 @@ if '--' not in df[df['Date']==input_date].values and 'Rest' not in df[df['Date']
     if st.button('Show Daily Facts'):
         st.write(df_fact.loc[df_fact['Date'] == input_date]['Fact'])
 
+st.sidebar.title('Chat')
+st.sidebar.table(df_chat.sort_values(by = ['Date'], ascending = False))
+        
 st.sidebar.title('History')
 st.sidebar.table(df.sort_values(by = ['Date'], ascending = False))
 
