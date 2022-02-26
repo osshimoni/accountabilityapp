@@ -85,8 +85,8 @@ if '--' not in df[df['Date']==input_date].values and 'Rest' not in df[df['Date']
     if st.button('Show Daily Facts'):
         st.write(df_fact.loc[df_fact['Date'] == input_date]['Fact'])
 
-st.sidebar.title('Chat')
-st.sidebar.table(df_chat.sort_values(by = ['Date'], ascending = False))
+# st.sidebar.title('Chat')
+# st.sidebar.table(df_chat.sort_values(by = ['Date'], ascending = False))
         
 st.sidebar.title('History')
 st.sidebar.table(df.sort_values(by = ['Date'], ascending = False))
