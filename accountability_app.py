@@ -108,7 +108,7 @@ with col3:
 
 
 with col4:
-    if st.checkbox('Show History', value = False):
+    if st.checkbox('Show History', value = True):
         st.sidebar.title('History')
         st.sidebar.table(df.sort_values(by=['Date'], ascending=False))
 
