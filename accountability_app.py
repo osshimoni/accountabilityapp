@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import date
+from datetime import datetime
 import pandas as pd
 import gspread as gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -38,6 +38,11 @@ if str(input_date) not in list(df_fact['Date']):
     upload_df(ws_fact, df_fact)
 
 
+def chat(text, name, time)
+    ws_chat = gc.open('chat').worksheet('chat')
+    df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
+    new_chat_data = {'Name':[name], 'Time':[time], 'Message':[text]}
+    upload_df(ws_chat, df_chat)
 
 # main code
 if str(input_date) not in list(df['Date']):
@@ -46,7 +51,7 @@ if str(input_date) not in list(df['Date']):
     df = df.append(new_day_data_df)
     upload_df(ws,df)
 
-
+    
     
 # get user name
 name = st.radio('Name', options = ['Osher', 'Ryan','Sumana'])
@@ -65,7 +70,9 @@ with col2:
         df.loc[df['Date'] == input_date, name] = 'Rest'
         st.write('You better have a good reason...')
         upload_df(ws, df)
-
+        
+# chat
+chat(st.text_input('Chat'), name, str(datetime.now()))
 
 
 # if all users completed workouts, show secret
