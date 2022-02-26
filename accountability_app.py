@@ -70,8 +70,8 @@ with col2:
 
 # if all users completed workouts, show secret
 if '--' not in df[df['Date']==input_date].values and 'Rest' not in df[df['Date']==input_date].values:
-    st.subheader('Good job fellas')
-    if st.button('Show Daily Fact'):
+    st.subheader('Good Job')
+    if st.button('Show Daily Facts'):
         st.write(df_fact.loc[df_fact['Date'] == input_date]['Fact'])
 
 st.sidebar.title('History')
