@@ -25,14 +25,15 @@ def upload_df(ws, df):
 # get date
 input_date = str(st.date_input('Date'))
 
-# set fact
+# set facts
 ws_fact = gc.open('facts').worksheet('facts')
 df_fact = pd.DataFrame.from_dict(ws_fact.get_all_records())
 
 if str(input_date) not in list(df_fact['Date']):
-    new_fact_data = {'Date':[input_date], 'Fact':[str(rd.get_fact())]}
-    new_fact_data_df = pd.DataFrame.from_dict(new_fact_data)
-    df_fact = df_fact.append(new_fact_data_df)
+    for i in range(3):
+        new_fact_data = {'Date':[input_date], 'Fact':[str(rd.get_fact())]}
+        new_fact_data_df = pd.DataFrame.from_dict(new_fact_data)
+        df_fact = df_fact.append(new_fact_data_df)
 
     upload_df(ws_fact, df_fact)
 
