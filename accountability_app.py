@@ -94,7 +94,7 @@ df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
 
 # clear chat. create dummy chat record upload as df_chat to chat worksheet
 def clear_chat():
-    clear_chat_data = {'Name': ['System'], 'Message': ['--']}, 'Time': [str(datetime.now(timezone_est))]
+    clear_chat_data = {'Name': ['System'], 'Message': ['--'], 'Time': [str(datetime.now(timezone_est))]}
     new_chat_data_df = pd.DataFrame.from_dict(clear_chat_data)
     df_chat = new_chat_data_df
     upload_df(ws_chat, df_chat)
