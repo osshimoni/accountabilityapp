@@ -44,6 +44,7 @@ df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
     
 def chat(text, name, time):
     new_chat_data = {'Name':[name], 'Time':[time], 'Message':[text]}
+    df_chat = df_chat.append(new_chat_data)
     upload_df(ws_chat, df_chat)
 
 # main code
