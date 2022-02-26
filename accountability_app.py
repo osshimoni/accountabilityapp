@@ -43,7 +43,7 @@ def chat(text, name, time):
     ws_chat = gc.open('chat').worksheet('chat')
     df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
 
-    new_chat_data = {'Name': [name], 'Time': [time], 'Message': [text]}
+    new_chat_data = {'Name': [name], 'Message': [text], 'Time': [time], }
     new_chat_data_df = pd.DataFrame.from_dict(new_chat_data)
     df_chat = df_chat.append(new_chat_data_df)
     upload_df(ws_chat, df_chat)
