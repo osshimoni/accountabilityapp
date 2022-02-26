@@ -75,7 +75,7 @@ with col2:
         upload_df(ws, df)
 
 # chatbox
-msg = st.text_input("Chat", key="text", placeholder = 'Press enter and then perss the send button to send a message')
+msg = st.text_input("Chat", key="text", placeholder = 'Press enter and then press the send button to send a message')
 
 # upload message to chat log, clear chatbox
 def clear_text():
