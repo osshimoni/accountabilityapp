@@ -38,7 +38,7 @@ if str(input_date) not in list(df_fact['Date']):
     upload_df(ws_fact, df_fact)
 
 
-def chat(text, name, time)
+def chat(text, name, time):
     ws_chat = gc.open('chat').worksheet('chat')
     df_chat = pd.DataFrame.from_dict(ws_chat.get_all_records())
     new_chat_data = {'Name':[name], 'Time':[time], 'Message':[text]}
