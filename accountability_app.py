@@ -5,6 +5,9 @@ import gspread as gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread_dataframe as gs
 import randfacts as rd
+import pytz
+
+timezone_est = pytz.timezone('America/New_York')
 
 # To add a user: add them to source dataset, add them to name radio, add a 'No' to the new data creation
 
@@ -80,7 +83,7 @@ msg = st.text_input("Chat", key="text", placeholder = 'Press enter/return on you
 # upload message to chat log, clear chatbox
 def clear_text():
     if msg != '':
-        chat(msg, name, str(datetime.now()))
+        chat(msg, name, str(datetime.now(timezone_est)))
     st.session_state["text"] = ""
 
 # send button to upload chat and clear textbox
