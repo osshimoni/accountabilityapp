@@ -76,7 +76,7 @@ with col2:
         upload_df(ws, df)
         
 # chat
-chat(st.text_input('Chat'), name, str(datetime.now()))
+# chat(st.text_input('Chat'), name, str(datetime.now()))
 
 
 # if all users completed workouts, show secret
